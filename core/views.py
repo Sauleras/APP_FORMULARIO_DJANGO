@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from core.forms import RegisterForms
@@ -43,7 +44,7 @@ class Cadastro(TemplateView):
 
             messages.success(request, "Usuário cadastrado com sucesso.")
             
-            return redirect('login')
+            return redirect('logar')
 
         else:
             
@@ -59,3 +60,27 @@ class Logar(TemplateView):
             "classcontent" : "content"
         }
         return render(request, self.template_name, contexto)
+
+    def post(self, request):
+
+        if request.method == 'POST':
+
+            username = request.POST['username']
+            pass1 = request.POST['password']          
+
+            user_obj = authenticate(username=username, password=pass1)
+            
+            if user_obj is not None:
+                login(request, user_obj)
+                return redirect('index')
+            
+            else:
+
+                messages.error(request, 'Credenciais invalidas')
+            
+        return render(request, self.template_name)
+
+def sair(request):
+    logout(request)
+    messages.success(request, "Deslogado com sucesso!")
+    return HttpResponseRedirect('/logar')

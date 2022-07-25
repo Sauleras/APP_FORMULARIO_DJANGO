@@ -20,12 +20,20 @@
             <li class="nav-item active">
               <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
             </li>
-    
           </ul>
+          {% if user.is_authenticated %}
+          <div class="navbar-btn d-none d-sm-inline-block">
+            <h4>Bem-Vindo, {{ user.first_name }}!</h4>
+            <a href="deslogar">
+              Deslogar
+            </a>
+          </div>
+          {% else %}
           <form class="form-inline my-2 my-lg-0">
             <a class="btn btn-outline-primary mr-sm-2" type="submit" href="{% url 'logar' %}">Logar</a>
             <a class="btn btn-outline-secondary my-2 my-sm-0" type="submit" href="{% url 'cadastro' %}">Cadastre-se</a>
           </form>
+          {% endif %}
         </div>
     </nav>
 

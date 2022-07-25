@@ -1,17 +1,25 @@
 {% extends 'base.html' %}
-{% block content %}
 {% load bootstrap4 %}
+{% block content %}
+{% for message in messages %}
+  <div class="container-fluid p-0">
+    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" >
+      <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+        <spam>{{ message }} </spam>
+    </div>
+  </div>
+{% endfor %}
 <h1>Cadastro</h1>
 <form method="post">
     {% csrf_token %}
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label for="validationDefault01">Primeiro Nome</label>
-        <input type="text" class="form-control" id="validationDefault01" placeholder="Seu primeiro nome" required>
+        <input type="text" class="form-control" id="validationDefault01" name="first_name" placeholder="Seu primeiro nome" required>
       </div>
       <div class="col-md-4 mb-3">
         <label for="validationDefault02">Ultimo Nome</label>
-        <input type="text" class="form-control" id="validationDefault02" placeholder="Seu ultimo nome" required>
+        <input type="text" class="form-control" id="validationDefault02" name="last_name" placeholder="Seu ultimo nome" required>
       </div>
       <div class="col-md-4 mb-3">
         <label for="validationDefaultUsername">Usuario</label>
@@ -19,22 +27,18 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroupPrepend2">@</span>
           </div>
-          <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Seu usuario" aria-describedby="inputGroupPrepend2" required>
+          <input type="text" class="form-control" id="validationDefaultUsername" name="username" placeholder="Seu usuario" aria-describedby="inputGroupPrepend2" required>
         </div>
       </div>
     </div>
     <div class="form-row">
-      <div class="col-md-6 mb-3">
-        <label for="validationDefault03">Cidade</label>
-        <input type="text" class="form-control" id="validationDefault03" placeholder="Sua cidade" required>
-      </div>
       <div class="col-md-3 mb-3">
         <label for="validationDefault04">E-mail</label>
-        <input type="text" class="form-control" id="validationDefault04" placeholder="Seu e-mail" required>
+        <input type="text" class="form-control" name="email" id="validationDefault04" placeholder="Seu e-mail" required>
       </div>
       <div class="col-md-3 mb-3">
         <label for="validationDefault05">Senha</label>
-        <input type="password" class="form-control" id="validationDefault05" placeholder="Sua senha" required>
+        <input type="password" class="form-control" name="password" id="validationDefault05" placeholder="Sua senha" required>
       </div>
     </div>
     <div class="form-group">

@@ -1,19 +1,27 @@
 {% extends 'base.html' %}
-{% block content %}
 {% load bootstrap4 %}
+{% block content %}
+{% for message in messages %}
+  <div class="container-fluid p-0">
+    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" >
+      <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+        {{ message }}
+    </div>
+  </div>
+{% endfor %}
 <h1>Logar</h1>
 <form method="post">
     {% csrf_token %}
     <div class="form-group row">
-      <label for="inputEmail3" class="col-sm-2 col-form-label">E-mail</label>
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" id="inputEmail3" placeholder="Seu e-mail">
+        <input type="text" class="form-control" id="inputUsername3" name="username" placeholder="Seu usuario">
       </div>
     </div>
     <div class="form-group row">
       <label for="inputPassword3" class="col-sm-2 col-form-label">Senha</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword3" placeholder="Sua senha">
+        <input type="password" class="form-control" id="inputPassword3" name="password" placeholder="Sua senha">
       </div>
     </div>
     <div class="form-group row">
