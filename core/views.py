@@ -18,6 +18,7 @@ class Index(TemplateView):
             "classcontent" : "content"
         }
         contexto['produtos'] = Produto.objects.all()
+        contexto['produtos'] = Produto.objects.order_by('nome')
         return render(request, self.template_name, contexto)
 
 class Cadastro(TemplateView):
