@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+{% for message in messages %}
+  <div class="container-fluid p-0">
+    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" >
+      <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+        <spam>{{ message }} </spam>
+    </div>
+  </div>
+{% endfor %}
+<h1>Produtos</h1>
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-warning" href="{% url 'index' %}">Cancelar</a>
+        {% endbuttons %}
+</form>
+{% endblock %}

@@ -1,18 +1,23 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from core.forms import RegisterForms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from .models import Produto
 
 class Index(TemplateView):
+    models = Produto
     template_name = "index.html"
 
     def get(self, request, *args, **kwargs):
         contexto = {
             "classcontent" : "content"
         }
+        contexto['produtos'] = Produto.objects.all()
         return render(request, self.template_name, contexto)
 
 class Cadastro(TemplateView):
@@ -84,3 +89,20 @@ def sair(request):
     logout(request)
     messages.success(request, "Deslogado com sucesso!")
     return HttpResponseRedirect('/logar')
+
+class CreateProdutoView(CreateView):
+    model = Produto
+    template_name = 'produtos.html'
+    fields = ['nome', 'preco']
+    success_url = reverse_lazy('index')
+
+class UpdateProdutoView(UpdateView):
+    model = Produto
+    template_name = 'produtos.html'
+    fields = ['nome', 'preco']
+    success_url = reverse_lazy('index')
+
+class DeleteProdutoView(DeleteView):
+    model = Produto
+    template_name = 'produtos_del.html'
+    success_url = reverse_lazy('index')
