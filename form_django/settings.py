@@ -17,12 +17,11 @@ from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-aag_jxl-#8l=dlwf79f_6592rfokpzt0501zqc0p_hlj8j47lv'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-aag_jxl-#8l=dlwf79f_6592rfokpzt0501zqc0p_hlj8j47lv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -80,6 +79,9 @@ WSGI_APPLICATION = 'form_django.wsgi.application'
 
 DATABASES = {
     'default': {
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'formularioDjango_db',
         'USER': 'postgres',
@@ -143,3 +145,8 @@ MESSAGE_TAGS = {
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+try:
+     from settings_local import *
+except ImportError:
+     pass
