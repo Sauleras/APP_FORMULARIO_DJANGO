@@ -1,5 +1,5 @@
 # APP_FORMULARIO_DJANGO
-Formulario simples feito com Html, Bootstrap e Django. O intuito deste projeto é estudar e treinar sobre criação de formularios e o metodo CRUD, utilizando o banco de dados PostgresSQL.
+Formulario simples feito com Html, CSS, JS, Bootstrap e Django. O intuito deste projeto é estudar e treinar sobre criação de formularios e o metodo CRUD, utilizando o banco de dados PostgresSQL.
 
 <strong>Tela Inicial</strong>
 ![image](https://user-images.githubusercontent.com/91494533/180869731-8f97fce4-ac61-46cc-b6d4-e082c377b5b3.png)
